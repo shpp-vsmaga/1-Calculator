@@ -37,7 +37,6 @@ int main() {
         expression = filterExpression(expression);
         if (checkParenthesis(expression)){
             QueueSHPP<string> polishNotation = toReversePolishNotation(expression);
-            //cout << "RPN: " << polishNotation << endl;
             double result = calcLine(polishNotation);
             cout << "Result: " + expression + " = " << result << endl;
         } else {
@@ -61,7 +60,9 @@ int main() {
 string filterExpression(string expression){
     string result;
     for(char ch: expression){
-        if (isdigit(ch) || isOperator(string(1,ch)) || ch == '(' || ch == ')' || ch == '.') result += ch;
+        if (isdigit(ch) || isOperator(string(1,ch)) || ch == '(' || ch == ')' || ch == '.'){
+            result += ch;
+        }
     }
 
     return result;
@@ -84,7 +85,9 @@ bool checkParenthesis(string expression){
     bool result = true;
     StackSHPP<char> stack;
     for(char ch: expression){
-        if(ch == '(') stack.push(ch);
+        if(ch == '('){
+            stack.push(ch);
+        }
         if (ch == ')' && !stack.isEmpty()){
             stack.pop();
         } else if (ch == ')' && stack.isEmpty()) {
@@ -92,7 +95,9 @@ bool checkParenthesis(string expression){
         }
 
     }
-    if (!stack.isEmpty()) result = false;
+    if (!stack.isEmpty()){
+        result = false;
+    }
     return result;
 }
 
@@ -184,7 +189,7 @@ double calcLine(QueueSHPP<string> &line){
         } else if (isdigit(tmp[0])){
             numbers.push(stod(tmp));
         } else {
-            double o2 = numbers.pop();;
+            double o2 = numbers.pop();
             double o1 = numbers.pop();
             numbers.push(doOperation(o1, o2, tmp));
         }
@@ -218,14 +223,14 @@ bool isOperator(string ch) {
  */
 int opPriority(char op){
     switch (op) {
-        case '+':
-        case '-':
-            return 1;
-        case '*':
-        case '/':
-            return 2;
-        case '^':
-            return 3;
+    case '+':
+    case '-':
+        return 1;
+    case '*':
+    case '/':
+        return 2;
+    case '^':
+        return 3;
 
     }
     return 0;
