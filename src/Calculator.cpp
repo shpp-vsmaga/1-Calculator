@@ -5,7 +5,7 @@
  * calculation that looks like "-2*(8/4)^2" and display's the result of this
  * expression. It supports mathematical operations such as "+" - addition,
  * "-" - subtraction, "*" - multiplication, "/" - division and "^" - raising to a power.
- * Any of this operations can be separated by parentheses - "(" and ")"
+ * Any of this operations can be separated by parentheses - "(" and ")".
  */
 
 #include <iostream>
